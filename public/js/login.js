@@ -15,33 +15,7 @@ function sendDataLoad(value){
 async function login(){
     
 
-    try {
-        sendDataLoad(true)
-        
-        let dataUsers = await fetch("https://api.github.com/gists/60ce6720500d33f635ae5b28b690568c"),
-            dataUsersJson = await dataUsers.json()
-        console.log(dataUsersJson)
-
-        if(!dataUsers.ok) throw {status: dataUsers.status, statusText: dataUsers.statusText}
-
-        let verify = 0
-
-        dataUsersJson.forEach(element => {
-            if(element.user === $user.value && element.password === $pass.value){
-                verify++
-            }
-        })
-
-        if(verify === 1){
-            window.open("../src/dashboard.html", "_self")
-        }else{
-            alert("Verifique los datos de inicio de sesión")
-        }
-
-        sendDataLoad(false)
-    } catch (error) {
-        console.log(error)
-    }
+    window.open("../src/dashboard.html", "_self")
 
     
 }
