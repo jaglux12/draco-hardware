@@ -1,0 +1,62 @@
+<form class="flex flex-col p-5 space-y-2">
+    <ul class="space-y-3">
+        <li class="flex flex-wrap items-center justify-evenly">
+            <!-- <div class="form-control w-full max-w-xs">
+                <label class="label">
+                  <span class="label-text">Titulo</span>
+                </label>
+                <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+            </div> -->
+            <div class="form-control w-full max-w-xs">
+              <label class="label">
+                  <span class="label-text">DNI</span>
+              </label>
+              <input type="text" placeholder="Type here" id="tbDniCliente" class="input input-bordered input-error w-full max-w-xs" />
+          </div>
+            <div class="form-control w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text">Nombre</span>
+                </label>
+                <input type="text" placeholder="Type here" id="tbNombreCliente" class="input input-bordered input-success w-full max-w-xs" />
+              </div>
+              
+        </li>
+        <li class="flex flex-wrap items-center justify-evenly">
+            
+          <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text">Apellido</span>
+            </label>
+            <input type="text" placeholder="Type here" id="tbApellidoCliente" class="input input-bordered input-success w-full max-w-xs" />
+        </div>
+            <div class="form-control w-full max-w-xs">
+              <label class="label">
+                <span class="label-text">Dirección</span>
+              </label>
+            <input type="text" placeholder="Type here" id="tbDireccionCliente" class="input input-bordered input-primary w-full max-w-xs" />
+
+          </div>
+        </li>
+        <li class="flex flex-wrap items-center justify-center pt-5 pb-5 space-x-2">
+            <button id="bEnviarCliente" class="btn btn-primary">Enviar</button>
+            <button id="bBorrarDatosCliente" class="btn btn-primary">Borrar</button>
+        </li>
+    </ul>
+</form>
+
+<div class="overflow-x-auto mb-5">
+    
+    <table class="table table-zebra grid w-full">
+      <!-- head -->
+      <thead class="w-full">
+        <tr>
+          <th>DNI</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Direccion</th>
+        </tr>
+      </thead>
+      <tbody id="table-clientes" class="grid w-full">
+      </tbody>
+    </table>
+  </div>

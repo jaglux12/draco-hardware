@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de control</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+
+</head>
+<body>
+    <template id="templates">
+        <tr id="template-productos" class="visible flex justify-start items-center hover hover:cursor-pointer">
+            <td class="id"></td>
+            <td class="tipo"></td>
+            <td class="marca"></td>
+            <td class="modelo"></td>
+            <td class="descripcion"></td>
+            <td class="acciones flex space-x-1">
+               <button id="bEditar" class="btn btn-xs">
+                  <img src="/assets/edit.svg" class="w-4" alt="">
+               </button>
+               <button id="bEliminar" class="btn btn-xs">
+                  <img src="/assets/trash.svg" class="w-5" alt="">
+               </button>
+            </td>
+          </tr>
+          <tr id="template-productos-modal" class="visible flex justify-start items-center hover hover:cursor-pointer">
+            <td class="id"></td>
+            <td class="tipo"></td>
+            <td class="marca"></td>
+            <td class="modelo"></td>
+            <td class="descripcion"></td>
+            <td class="acciones flex space-x-1">
+               <button id="bSeleccionar" class="btn btn-xs">
+                  <img src="/assets/arrow.svg" class="w-4" alt="">
+               </button>
+            </td>
+          </tr>
+          <tr id="template-stock" class="visible flex justify-start items-center hover hover:cursor-pointer">
+            <td class="id"></td>
+            <td class="id_producto"></td>
+            <td class="cantidad"></td>
+            <td class="stockMinimo"></td>
+            <td class="ganancia"></td>
+            <td class="precioUnitario"></td>
+            <td class="precioVenta"></td>
+            <td class="acciones flex space-x-1">
+               <button id="bEditarStock" class="btn btn-xs">
+                  <img src="/assets/edit.svg" class="w-4" alt="">
+               </button>
+               <button id="bEliminarStock" class="btn btn-xs">
+                  <img src="/assets/trash.svg" class="w-5" alt="">
+               </button>
+            </td>
+          </tr>
+          <div id="template-ventas-modal" class="stats bg-primary text-primary-content hover:bg-white hover:text-black">
+            <div id="panel1" class="stat">
+              <div class="stat-title"></div>
+              <div class="stat-value"></div>
+              <div class="stat-actions">
+               <div id="modelo" class="stat-title"></div>
+              </div>
+            </div>
+            
+            <div id="panel2" class="stat">
+              <div class="stat-title"></div>
+              <div class="stat-value"></div>
+              <div class="stat-actions">
+                <button id="bAgregarVenta" class="btn btn-sm hover:bg-white hover:border-2 hover:border-black hover:text-black">
+                     <img src="/assets/arrow.svg" alt="" class="w-5">
+                </button>
+              </div>
+            </div>
+          </div>
+          <tr id="template-row-ventas" class="visible flex justify-start items-center hover hover:cursor-pointer">
+            <td class="descripcion"></td>
+            <td class="cantidad"></td>
+            <td class="total"></td>
+            <td class="acciones flex space-x-1">
+               <button id="bEliminarCarro" class="btn btn-xs">
+                  <img src="/assets/trash.svg" class="w-5" alt="">
+               </button>
+            </td>
+          </tr>
+          <tr id="template-row-venta" class="visible flex justify-start items-center hover hover:cursor-pointer">
+            <td class="dni"></td>
+            <td class="descripcion"></td>
+            <td class="total"></td>
+            <td class="fecha"></td>
+            <td class="tipoPago"></td>
+            <td class="pagado"></td>
+            <td class="acciones flex space-x-1">
+               <button id="bEliminarCarro" class="btn btn-xs">
+                  <img src="/assets/trash.svg" class="w-5" alt="">
+               </button>
+            </td>
+          </tr>
+          <tr id="template-row-clientes" class="visible flex justify-start items-center hover hover:cursor-pointer">
+            <td class="dni"></td>
+            <td class="nombre"></td>
+            <td class="apellido"></td>
+            <td class="direccion"></td>
+            <td class="acciones flex space-x-1">
+               <button id="bEditarCliente" class="btn btn-xs">
+                  <img src="/assets/edit.svg" class="w-4" alt="">
+               </button>
+               <button id="bEliminarCliente" class="btn btn-xs">
+                  <img src="/assets/trash.svg" class="w-5" alt="">
+               </button>
+            </td>
+          </tr>
+
+          <tr id="template-row-clientes-modal" class="visible flex justify-start items-center hover hover:cursor-pointer">
+            <td class="dni"></td>
+            <td class="nombre"></td>
+            <td class="apellido"></td>
+            <td class="direccion"></td>
+            <td class="acciones flex space-x-1">
+               <button id="bSeleccionarClienteModal" class="btn btn-sm hover:bg-white hover:border-2 hover:border-black hover:text-black">
+                  <img src="/assets/arrow.svg" alt="" class="w-5">
+             </button>
+            </td>
+          </tr>
+          <option id="template-marcas"></option>
+          <option id="template-modelos"></option>
+          <option id="template-tipos"></option>
+          <option id="template-pagos"></option>
+
+    </template>
+    
+<button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+    <span class="sr-only">Open sidebar</span>
+    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+       <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+    </svg>
+ </button>
+ 
+ <aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+    <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+       <ul class="space-y-2 font-medium">
+          <li id="menu-principal">
+             <a href="dashboard.html" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group">
+                <img src="/assets/logo.png" class="w-8" alt="">
+                <span class="ml-3">DracoHardware</span>
+             </a>
+          </li>
+          <li id="productos">
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                  <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z"/>
+               </svg>
+               <span class="flex-1 ml-3 whitespace-nowrap">Productos</span>
+            </a>
+         </li>
+          <li id="stock">
+             <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                   <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="flex-1 ml-3 whitespace-nowrap">Stock</span>
+                <!-- <span class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span> -->
+             </a>
+          </li>
+          <li id="ventas">
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16ZM12 14.0967C10.842 14.0967 9.90331 13.158 9.90331 12C9.90331 10.842 10.842 9.90331 12 9.90331C13.158 9.90331 14.0967 10.842 14.0967 12C14.0967 13.158 13.158 14.0967 12 14.0967Z" fill="currentColor"></path> <path d="M7 12C7 12.5523 6.55229 13 6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44772 11 6 11C6.55229 11 7 11.4477 7 12Z" fill="currentColor"></path> <path d="M18 13C18.5523 13 19 12.5523 19 12C19 11.4477 18.5523 11 18 11C17.4477 11 17 11.4477 17 12C17 12.5523 17.4477 13 18 13Z" fill="currentColor"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M21 5C22.6569 5 24 6.34315 24 8V16C24 17.6569 22.6569 19 21 19H3C1.34315 19 0 17.6569 0 16V8C0 6.34315 1.34315 5 3 5H21ZM4 7H20C20 7.26264 20.0517 7.52272 20.1522 7.76537C20.2528 8.00802 20.4001 8.2285 20.5858 8.41421C20.7715 8.59993 20.992 8.74725 21.2346 8.84776C21.4773 8.94827 21.7374 9 22 9V15C21.7374 15 21.4773 15.0517 21.2346 15.1522C20.992 15.2528 20.7715 15.4001 20.5858 15.5858C20.4001 15.7715 20.2528 15.992 20.1522 16.2346C20.0517 16.4773 20 16.7374 20 17H4C4 16.7374 3.94827 16.4773 3.84776 16.2346C3.74725 15.992 3.59993 15.7715 3.41421 15.5858C3.2285 15.4001 3.00802 15.2528 2.76537 15.1522C2.52272 15.0517 2.26264 15 2 15V9C2.26264 9 2.52272 8.94827 2.76537 8.84776C3.00802 8.74725 3.2285 8.59993 3.41421 8.41421C3.59993 8.2285 3.74725 8.00802 3.84776 7.76537C3.94827 7.52272 4 7.26264 4 7Z" fill="currentColor"></path> </g></svg>
+               <span class="flex-1 ml-3 whitespace-nowrap">Ventas</span>
+            </a>
+         </li>
+          <li id="clientes">
+             <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                   <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>
+                </svg>
+                <span class="flex-1 ml-3 whitespace-nowrap">Clientes</span>
+             </a>
+          </li>
+          <li id="reportes">
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="0.5" d="M12 20.0283V18H8L8 20.0283C8 20.3054 8 20.444 8.09485 20.5C8.18971 20.556 8.31943 20.494 8.57888 20.3701L9.82112 19.7766C9.9089 19.7347 9.95279 19.7138 10 19.7138C10.0472 19.7138 10.0911 19.7347 10.1789 19.7767L11.4211 20.3701C11.6806 20.494 11.8103 20.556 11.9051 20.5C12 20.444 12 20.3054 12 20.0283Z" fill="currentColor"></path> <path d="M8 18H7.42598C6.34236 18 5.96352 18.0057 5.67321 18.0681C5.15982 18.1785 4.71351 18.4151 4.38811 18.7347C4.27837 18.8425 4.22351 18.8964 4.09696 19.2397C3.97041 19.5831 3.99045 19.7288 4.03053 20.02C4.03761 20.0714 4.04522 20.1216 4.05343 20.1706C4.16271 20.8228 4.36259 21.1682 4.66916 21.4142C4.97573 21.6602 5.40616 21.8206 6.21896 21.9083C7.05566 21.9986 8.1646 22 9.75461 22H14.1854C15.7754 22 16.8844 21.9986 17.7211 21.9083C18.5339 21.8206 18.9643 21.6602 19.2709 21.4142C19.5774 21.1682 19.7773 20.8228 19.8866 20.1706C19.9784 19.6228 19.9965 18.9296 20 18H12V20.0283C12 20.3054 12 20.444 11.9051 20.5C11.8103 20.556 11.6806 20.494 11.4211 20.3701L10.1789 19.7767C10.0911 19.7347 10.0472 19.7138 10 19.7138C9.95279 19.7138 9.9089 19.7347 9.82112 19.7766L8.57888 20.3701C8.31943 20.494 8.18971 20.556 8.09485 20.5C8 20.444 8 20.3054 8 20.0283V18Z" fill="currentColor"></path> <path opacity="0.5" d="M4.72718 2.73332C5.03258 2.42535 5.46135 2.22456 6.27103 2.11478C7.10452 2.00177 8.2092 2 9.7931 2H14.2069C15.7908 2 16.8955 2.00177 17.729 2.11478C18.5387 2.22456 18.9674 2.42535 19.2728 2.73332C19.5782 3.0413 19.7773 3.47368 19.8862 4.2902C19.9982 5.13073 20 6.24474 20 7.84202L20 18H7.42598C6.34236 18 5.96352 18.0057 5.67321 18.0681C5.15982 18.1785 4.71351 18.4151 4.38811 18.7347C4.27837 18.8425 4.22351 18.8964 4.09696 19.2397C4.02435 19.4367 4 19.5687 4 19.7003V7.84202C4 6.24474 4.00176 5.13073 4.11382 4.2902C4.22268 3.47368 4.42179 3.0413 4.72718 2.73332Z" fill="currentColor"></path> <path d="M7.25 7C7.25 6.58579 7.58579 6.25 8 6.25H16C16.4142 6.25 16.75 6.58579 16.75 7C16.75 7.41421 16.4142 7.75 16 7.75H8C7.58579 7.75 7.25 7.41421 7.25 7Z" fill="currentColor"></path> <path d="M8 9.75C7.58579 9.75 7.25 10.0858 7.25 10.5C7.25 10.9142 7.58579 11.25 8 11.25H13C13.4142 11.25 13.75 10.9142 13.75 10.5C13.75 10.0858 13.4142 9.75 13 9.75H8Z" fill="currentColor"></path> </g></svg>
+               <span class="flex-1 ml-3 whitespace-nowrap">Reportes</span>
+            </a>
+         </li>
+          <li id="push">
+            <a href="#" class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-400 hover:text-gray-200 dark:hover:bg-gray-700 group bg-black">
+               <svg version="1.1" class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve" fill="#c0bfbc"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;} </style> <g> <ellipse cx="14" cy="8" rx="11" ry="6"></ellipse> <path d="M14,24c-4.8,0-8.8-1.4-11-3.6V24c0,3.4,4.8,6,11,6c0.9,0,1.8-0.1,2.7-0.2C15.2,28.3,14.3,26.2,14,24C14,24,14,24,14,24z"></path> <path d="M3,12.4V16c0,3.4,4.8,6,11,6c0,0,0,0,0.1,0c0.2-2.4,1.4-4.6,3-6.2c-1,0.1-2,0.2-3.1,0.2C9.2,16,5.2,14.6,3,12.4z"></path> </g> <path d="M24,15c-4.4,0-8,3.6-8,8c0,4.1,3.1,7.4,7,7.9v-8.5l-1.3,1.3c-0.4,0.4-1,0.4-1.4,0s-0.4-1,0-1.4l3-3c0.1-0.1,0.2-0.2,0.3-0.2 c0.2-0.1,0.5-0.1,0.8,0c0.1,0.1,0.2,0.1,0.3,0.2l3,3c0.4,0.4,0.4,1,0,1.4C27.5,23.9,27.3,24,27,24s-0.5-0.1-0.7-0.3L25,22.4v8.5 c3.9-0.5,7-3.9,7-7.9C32,18.6,28.4,15,24,15z"></path> </g></svg>
+               <span class="flex-1 ml-3 whitespace-nowrap">Push</span>
+            </a>
+         </li>
+          
+          <!-- <li>
+             <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
+                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"/>
+                </svg>
+                <span class="flex-1 ml-3 whitespace-nowrap">Sign In</span>
+             </a>
+          </li>
+          <li>
+             <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                   <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z"/>
+                   <path d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z"/>
+                   <path d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z"/>
+                </svg>
+                <span class="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
+             </a>
+          </li> -->
+       </ul>
+    </div>
+ </aside>
+ 
+ <div id="main-content" class="px-10 py-10 sm:ml-64">
+
+
+
+ </div>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
+ <script type="module" src="js/dashboard.js"></script>
+ <script type="module" src="js/stock.js"></script>
+ <script type="module" src="js/ventas.js"></script>
+ <script type="module" src="js/clientes.js"></script>
+ <script type="module" src="js/masvendidos.js"></script>
+
+</body>
+</html>

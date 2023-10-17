@@ -1,0 +1,175 @@
+<form class="flex flex-col p-5 space-y-2">
+    <ul class="space-y-3">
+        <li class="flex flex-wrap items-center justify-evenly">
+            <!-- <div class="form-control w-full max-w-xs">
+                <label class="label">
+                  <span class="label-text">Titulo</span>
+                </label>
+                <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+            </div> -->
+            <div class="form-control w-full max-w-xs">
+              <label class="label">
+                  <span class="label-text">Producto</span>
+              </label>
+              <div class="form-control">
+                <div class="input-group">
+                  <input type="text" placeholder="" id="tbIdProducto" class="input input-bordered" disabled/>
+                  <!-- Open the modal using ID.showModal() method -->
+                    <button id="btn-openmodal-stock" class="btn btn-square">
+                        🔍
+                    </button>
+                    <dialog id="my_modal_1" class="modal w-full h-full">
+                        <div class="modal-box w-10/12 max-w-5xl h-3/4 max-h-5xl">
+                            <h3 class="font-bold text-lg">Buscar Producto</h3>
+                            <div class="mb-5 mt-5">
+                                <div class="form-control ">
+                                  <div class="input-group input-group-xs">
+                                    <select class="select select-bordered" id="filtroProducto-dialogo">
+                                      <option disabled selected></option>
+                                      <option>Tipo</option>
+                                      <option>Marca</option>
+                                      <option>Modelo/Version</option>
+                                      <option>Descripcion</option>
+                                    </select>
+                                    <input type="text" placeholder="Buscar ..." class="input input-bordered" id="tbBuscarProducto-dialogo"/>
+                                    <button class="btn btn-square" id="bBuscarProducto">
+                                      🔍
+                                    </button>
+                                    <button class="btn btn-circle" id="bEliminarFiltros">
+                                      🗑️
+                                    </button>
+                                  </div>
+                                  </div>
+                                </div>
+                                <div class="overflow-x-auto mb-5">
+    
+                                  <table class="table table-zebra grid w-full">
+                                    <!-- head -->
+                                    <thead class="w-full">
+                                      <tr>
+                                        <th>ID</th>
+                                        <th>Tipo</th>
+                                        <th>Marca</th>
+                                        <th>Modelo/version</th>
+                                        <th>Descripcion</th>
+                                        <th>Accion</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody id="table-productos-dialogo" class="grid w-full">
+                                    </tbody>
+                                  </table>
+                                </div>
+                                <div class="badge badge-info gap-2">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                  Para salir presione ESCAPE
+                                </div>
+                              </div>
+                        </div>
+                    </dialog>
+                </div>
+              </div>
+              </div>
+          </div>
+            
+              <div class="form-control w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text">Cantidad</span>
+                </label>
+                <input type="text" placeholder="" id="tbCantidad" class="input input-bordered w-full max-w-xs" />
+            </div>
+              
+        </li>
+        <li class="flex flex-wrap items-center justify-evenly">
+          <div class="form-control w-full max-w-xs">
+            <label class="label">
+              <span class="label-text">Stock minimo</span>
+            </label>
+            <input type="text" placeholder="" id="tbStockMinimo" class="input input-bordered w-full max-w-xs" />
+        </div>
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">Precio unitario</span>
+          </label>
+          <label class="input-group">
+            <input type="text" placeholder="" id="tbPrecioUnitario" class="input input-bordered input-primary w-full max-w-xs"  />
+            <span>$</span>
+          </label>
+          
+        </div>
+ 
+            
+        </li>
+        <li class="flex flex-wrap items-center justify-evenly">
+            
+          <div class="form-control w-full max-w-xs">
+            <label class="label">
+              <span class="label-text">Ganancia</span>
+            </label>
+            <label class="input-group">
+            <button class="btn" id="bCalcGanancia">📝</button>
+              <input type="text"id="tbGanancia" placeholder="" class="input input-bordered input-accent w-full max-w-xs"  />
+              <span>%</span>
+            </label>
+          </div>
+
+          <div class="form-control w-full max-w-xs">
+            <label class="label">
+              <span class="label-text">Precio venta</span>
+            </label>
+            <label class="input-group">
+              <input type="text"id="tbPrecioVenta"  placeholder="" class="input input-bordered input-accent w-full max-w-xs" disabled />
+              <span>$</span>
+            </label>
+          </div>
+        </li>
+        
+        <li class="flex flex-wrap items-center justify-center pt-5 pb-5">
+            
+            <button id="bEnviarStock" class="btn btn-primary">Enviar</button>
+        </li>
+    </ul>
+</form>
+
+
+<div class="mb-5 flex justify-center">
+  <div class="form-control ">
+    <div class="input-group input-group-xs">
+      <select class="select select-bordered" id="fdf">
+        <option disabled selected></option>
+        <option>Tipo</option>
+        <option>Marca</option>
+        <option>Modelo/Version</option>
+        <option>Descripcion</option>
+      </select>
+      <input type="text" placeholder="Buscar ..." class="input input-bordered" id="fdfd"/>
+      <button class="btn btn-square" id="dfdf">
+        🔍
+      </button>
+      <button class="btn btn-circle" id="fdfd">
+        🗑️
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="overflow-x-auto mb-5 ">
+    
+    <table class="table table-zebra grid w-full justify-center">
+      <!-- head -->
+      <thead class="w-full flex justify-center">
+        <tr class="w-full space-x-1">
+          <th>ID_stock</th>
+          <th>ID_producto</th>
+          <th>Cantidad</th>
+          <th>StockMinimo</th>
+          <th>Ganancia</th>
+          <th>Precio unitario</th>
+          <th>Precio de venta</th>
+        </tr>
+      </thead>
+      <tbody id="table-stock" class="grid w-full">
+      </tbody>
+    </table>
+  </div>

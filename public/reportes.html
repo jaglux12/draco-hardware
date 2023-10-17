@@ -1,0 +1,49 @@
+<div class="flex flex-wrap space-y-5">
+
+  <div class="card lg:card-side bg-violet-500 text-white shadow-xl">
+    <figure><img src="../assets/productos.jpeg" alt="Album"/></figure>
+    <div class="card-body ">
+      <h2 class="card-title">Reporte de productos</h2>
+      <p>Genera un documento con los productos en stock disponibles para su venta.</p>
+      <div class="card-actions justify-end">
+        <button id="bGenerarReporteProductos" class="btn btn-primary">GENERAR</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card lg:card-side bg-yellow-300 text-black shadow-xl">
+    <figure><img src="../assets/deuda_clientes.jpg" alt="Album"/></figure>
+    <div class="card-body ">
+      <h2 class="card-title">Reporte de facturas vencidas</h2>
+      <p>Genera un documento con todas las facturas vencidas para cobrarle a tus clientes.</p>
+      <div class="card-actions justify-end">
+        <button id="bGenerarReporteFacturasVencidas" class="btn btn-outline border-black text-black hover:bg-black hover:text-yellow-300 hover:border-0">GENERAR</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card lg:card-side bg-teal-400 text-white shadow-xl">
+    <figure><img src="../assets/faltastock.jpg" alt="Album"/></figure>
+    <div class="card-body ">
+      <h2 class="card-title">Reporte de stock</h2>
+      <p>Genera un documento con todos los productos que estén a punto de llegar a su stock minimo, se necesita reponer las cantidades.</p>
+      <div class="card-actions justify-end">
+        <button id="bGenerarReporteStockFalta" class="btn btn-outline border-white text-white hover:bg-white hover:text-teal-400 hover:border-0">GENERAR</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card lg:card-side bg-lime-500 text-white shadow-xl">
+    <figure><img src="../assets/snowden.jpg" alt="Album"/></figure>
+    <div class="card-body ">
+      <h2 class="card-title">Reporte de cliente</h2>
+      <p>Genera un documento con todas las deudas y compras del cliente con su identificador único.</p>
+      <div class="card-actions justify-end items-center">
+        <label class="label">ID</label>
+        <input type="text" placeholder="Type here" id="dniCliente" class="input input-bordered bg-transparent border-white  border-2 text-black input-md w-2/4 max-w-xs" />
+        <button id="bGenerarReporteCliente" class="btn btn-outline border-white text-white hover:bg-white hover:text-teal-400 hover:border-0">GENERAR</button>
+      </div>
+    </div>
+  </div>
+
+</div>

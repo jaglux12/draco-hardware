@@ -1,0 +1,159 @@
+<form class="flex flex-col p-5 space-y-2">
+    <ul class="space-y-3">
+        <li class="flex flex-wrap items-center justify-evenly">
+            <!-- <div class="form-control w-full max-w-xs">
+                <label class="label">
+                  <span class="label-text">Titulo</span>
+                </label>
+                <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+            </div> -->
+            <div class="form-control w-full max-w-xs">
+              <label class="label">
+                  <span class="label-text">Producto</span>
+              </label>
+              <div class="form-control">
+                <div class="input-group">
+                  <input type="text" placeholder="" id="tbIdProducto" class="input input-bordered" disabled/>
+                  <!-- Open the modal using ID.showModal() method -->
+                    <button id="btn-openmodal-ventas" class="btn btn-square">
+                        🔍
+                    </button>
+                    <dialog id="my_modal_1" class="modal w-full h-full">
+                        <div class="modal-box w-10/12 max-w-5xl h-3/4 max-h-5xl">
+                            <h3 class="font-bold text-lg mb-5">Buscar Producto</h3>
+                                <div id="table-ventas-dialogo" class="overflow-x-auto mb-5 flex flex-col space-y-2">
+    
+                                </div>
+                                <div class="badge badge-info gap-2">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                  Para salir presione ESCAPE
+                                </div>
+                              </div>
+                        </dialog>
+                        </div>
+                    
+                </div>
+              </div>
+              </div>
+          </div>
+            <div class="form-control w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text">Cantidad</span>
+                </label>
+                <input type="text"id="tbCantidad" placeholder="" class="input input-bordered w-full max-w-xs" />
+              </div>
+              
+        </li>
+
+        <li class="flex flex-wrap items-center justify-evenly">
+
+    <div class="form-control w-full max-w-xs">
+      <label class="label">
+          <span class="label-text">Cliente</span>
+      </label>
+      <div class="form-control">
+        <div class="input-group">
+          <input type="text" placeholder="" id="tbIdCliente" class="input input-bordered" disabled/>
+          <!-- Open the modal using ID.showModal() method -->
+            <button id="btn-openmodal-clientes" class="btn btn-square">
+                🔍
+            </button>
+            <dialog id="my_modal_2" class="modal w-full h-full">
+                <div class="modal-box w-10/12 max-w-5xl h-3/4 max-h-5xl">
+                    <h3 class="font-bold text-lg">Buscar cliente</h3>
+                        <div class="overflow-x-auto mb-5">
+
+                          <table class="table table-zebra grid w-full">
+                            <!-- head -->
+                            <thead class="w-full">
+                              <tr>
+                                <th>DNI</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Direccion</th>
+                              </tr>
+                            </thead>
+                            <tbody id="table-clientes-dialogo" class="grid w-full">
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="badge badge-info gap-2">
+                          
+                          Para salir presione ESCAPE
+                        </div>
+                      </div>
+                </dialog>
+                </div>
+            
+        </div>
+</div>
+<div class="form-control w-full max-w-xs">
+<label class="label">
+    <span class="label-text">Medio de pago</span>
+</label>
+<select id="lista-pagos" class="select select-bordered">
+  <option selected></option>
+</select>
+</div>
+        </li>
+
+        <li class="flex flex-wrap items-center justify-center">
+          <div class="form-control w-full max-w-xs">
+            <label class="label">
+              <span class="label-text">Pagado</span>
+            </label>
+            <select id="tbPagado" class="select select-bordered">
+              <option selected>SI</option>
+              <option selected>NO</option>
+
+            </select>
+          </div>
+        </li>
+        
+        <li class="flex flex-wrap items-center justify-center pt-5 pb-5 space-x-1">
+            <button id="bEnviarVenta" class="btn btn-primary">Agregar</button>
+            <button id="bVenderProducto" class="btn btn-secondary">Vender</button>
+        </li>
+    </ul>
+</form>
+
+
+
+
+<div class="overflow-x-auto mb-5 h-80 bg-red-500 p-4 rounded-md">
+    <div class="flex space-x-1 text-white">
+      <img src="../assets/carro-compras.svg" alt="" class="w-5">
+      <h3 class="font-bold">Carro de compras</h3>
+    </div>    
+    <table class="table table-zebra grid w-full">
+      <!-- head -->
+      <thead class="w-full text-gray-200">
+        <tr class="flex w-full">
+          <th>Descripcion</th>
+          <th>Cantidad</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="table-carroVentas" class="grid w-full text-xs">
+      </tbody>
+    </table>
+  </div>
+
+  <div class="overflow-x-auto mb-5">
+    <h3>Ventas</h3>    
+    <table class="table grid w-full">
+      <!-- head -->
+      <thead class="w-full">
+        <tr>
+          <th>DNI</th>
+          <th>Descripcion</th>
+          <th>Total</th>
+          <th>Fecha</th>
+          <th>Tipo de pago</th>
+          <th>Pagado</th>
+        </tr>
+      </thead>
+      <tbody id="table-listaVentas" class="grid w-full">
+      </tbody>
+    </table>
+  </div>

@@ -1,0 +1,93 @@
+<form class="flex flex-col p-5 space-y-2">
+    <ul class="space-y-3">
+        <li class="flex flex-wrap items-center justify-evenly">
+            <!-- <div class="form-control w-full max-w-xs">
+                <label class="label">
+                  <span class="label-text">Titulo</span>
+                </label>
+                <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+            </div> -->
+            <div class="form-control w-full max-w-xs">
+              <label class="label">
+                  <span class="label-text">Tipo</span>
+              </label>
+              <select id="lista-tipos" class="select select-bordered">
+                <option selected></option>
+              </select>
+          </div>
+            <div class="form-control w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text">Marca</span>
+                </label>
+                <select id="lista-marcas" class="select select-bordered">
+                  <option selected></option>
+                </select>
+              </div>
+              
+        </li>
+        <li class="flex flex-wrap items-center justify-evenly">
+            
+          <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text">Modelo</span>
+            </label>
+            <select id="lista-modelos" class="select select-bordered">
+              <option selected></option>
+            </select>
+        </div>
+            <div class="form-control w-full max-w-xs">
+              <label class="label">
+                <span class="label-text">Descripción</span>
+              </label>
+              <textarea id="descripcion" class="textarea textarea-bordered h-24" placeholder="Bio"></textarea>
+          </div>
+        </li>
+        <li class="flex flex-wrap items-center justify-center pt-5 pb-5">
+            
+            <button id="bEnviarProducto" class="btn btn-primary">Enviar</button>
+        </li>
+    </ul>
+</form>
+
+
+<div class="mb-5 ">
+  <div class="form-control ">
+    <div class="input-group input-group-xs">
+      <select class="select select-bordered" id="filtroProducto">
+        <option disabled selected></option>
+        <option>Tipo</option>
+        <option>Marca</option>
+        <option>Modelo/Version</option>
+        <option>Descripcion</option>
+      </select>
+      <input type="text" placeholder="Buscar ..." class="input input-bordered" id="tbBuscarProducto"/>
+      <button class="btn btn-square" id="bBuscarProducto">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+      </button>
+      <button class="btn btn-circle" id="bEliminarFiltros">
+        🗑️
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="overflow-x-auto mb-5">
+    
+    <table class="table table-zebra grid w-full">
+      <!-- head -->
+      <thead class="w-full">
+        <tr>
+          <th>ID</th>
+          <th>Tipo</th>
+          <th>Marca</th>
+          <th>Modelo/version</th>
+          <th>Descripcion</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <tbody id="table-productos" class="grid w-full">
+      </tbody>
+    </table>
+  </div>
