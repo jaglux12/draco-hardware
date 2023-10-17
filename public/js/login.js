@@ -15,7 +15,7 @@ function sendDataLoad(value){
 async function login(){
     
 
-    window.open(",,/dashboard.html", "_self")
+    window.open("../dashboard.html", "_self")
 
     
 }
